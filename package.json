@@ -1,11 +1,11 @@
 {
-  "name": "testem-failure-reporter",
-  "version": "1.0.4",
-  "description": "Reporter for testem that outputs only failed tests",
+  "name": "testem-failure-dot-reporter",
+  "version": "1.0.0",
+  "description": "Reporter for testem that outputs dots and failed tests",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Gridium/testem-failure-reporter.git"
+    "url": "git://github.com/movableink/testem-failure-dot-reporter.git"
   },
   "scripts": {
     "test": "testem ci"
@@ -15,7 +15,7 @@
     "javascript",
     "testing"
   ],
-  "author": "Kimberly Nicholls",
+  "author": "Michael Nutt",
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2"

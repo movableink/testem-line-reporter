@@ -1,27 +1,39 @@
 var colors = require('colors/safe');
 
-function FailureReporter(out) {
+function FailureReporter(silent, out) {
   this.out = out || process.stdout;
+  this.silent = silent;
   this.total = 0;
   this.fail = 0;
   this.pass = 0;  // used by ci/index.js getExitCode
+  this.skipped = 0;
 }
 
 FailureReporter.prototype = {
   report: function(prefix, data) {
     this.display(prefix, data);
     this.total++;
-    if (!data.passed) {
-      this.fail++;
-    } else {
+    if (data.skipped) {
+      this.skipped++;
+    } else if (data.passed) {
       this.pass++;
+    } else {
+      this.fail++;
     }
   },
+
   display: function(prefix, result) {
-    if (result.passed) {
+    if (result.skipped) {
+      this.out.write(colors.yellow('*'));
       return;
     }
-    this.out.write(colors.red.bold(result.name.trim())+': ');
+
+    if (result.passed) {
+      this.out.write(colors.green.bold('.'));
+      return;
+    }
+
+    this.out.write(colors.red.bold('\nF ' + result.name.trim())+': ');
     // result.error.message is the whole stack trace
     var lines = result.error.message.split('\n');
     var last = lines[lines.length-1].split(': ');
@@ -32,8 +44,15 @@ FailureReporter.prototype = {
     } else {
       this.out.write(lines[lines.length-1]+'\n');
     }
+
+    this.out.write(result.error.message.replace(/\n/g, '\n    ') + '\n');
   },
+
   finish: function() {
+    if (this.silent) {
+      return;
+    }
+
     var summary = '\n'+this.fail+'/'+this.total+' failed\n';
     if (this.fail === 0) {
       this.out.write(colors.green.bold(summary));

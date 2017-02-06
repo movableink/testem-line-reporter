@@ -1,18 +1,18 @@
-# Testem Failure Reporter
+# Testem Failure Dot Reporter
 
-Report just the interesting part of a test run: the failures.
+Report just the interesting part of a test run: the failures and the dots.
 
 ## Installation
 
-    npm install testem-failure-reporter
+    npm install testem-failure-dot-reporter
 
 ## Usage
 
-Create a `testem.js` config file that sets reporter to `testem-failure-reporter`:
+Create a `testem.js` config file that sets reporter to `testem-failure-dot-reporter`:
 
 ````
-var FailureReporter = require('testem-failure-reporter');
-var reporter = new FailureReporter();
+var FailureDotReporter = require('testem-failure-dot-reporter');
+var reporter = new FailureDotReporter();
 
 module.exports = {
   "framework": "qunit",
@@ -29,20 +29,18 @@ Run tests in an Ember CLI project, reporting only failures:
 
     ember test --config-file ~/work/project/testem.js
 
-<img src="run1.png" alt="ember test screenshot" width="463">
-
-`bin/run-tests.js` is a sample script that uses 
+`bin/run-tests.js` is a sample script that uses
 [sane](https://www.npmjs.com/package/sane) to watch the filesystem,
 run tests on changes, parse the [blanket.js](http://blanketjs.org/) coverage
 report, and output test coverage changes.
 
-    node_modules/testem-failure-reporter/bin/run-tests.js
+    node_modules/testem-failure-dot-reporter/bin/run-tests.js
 
 ## Notes
 
-This currently doesn't work with `ember test --module some-module` because Ember CLI 
+This currently doesn't work with `ember test --module some-module` because Ember CLI
 rewrites the `testem.json` file to accomplish this, and doesn't support the
-`testem.js` file.  
+`testem.js` file.
 
 See [Ember CLI config rewriting](https://github.com/ember-cli/ember-cli/blob/f4844e674d35a3651693954fc9baf0dbb03cc22f/lib/commands/test.js#L51)
 and [testem.js parsing](https://github.com/airportyh/testem/blob/aa6e9767ca81ae031095779c733882ba42184f42/lib/config.js#L86).
