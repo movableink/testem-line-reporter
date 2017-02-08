@@ -34,18 +34,19 @@ FailureReporter.prototype = {
     }
 
     this.out.write('\n' + colors.red('F ' + result.name.trim())+': ');
-    // result.error.message is the whole stack trace
-    var lines = result.error.message.split('\n');
-    var last = lines[lines.length-1].split(': ');
-    // at http://localhost:7357/assets/test-support.js:5463: No model was found for 'user'
-    // line number and file aren't useful because it's the concatenated file
-    if (last.length > 1) {
-      this.out.write(last[1]+'\n');
-    } else {
-      this.out.write(lines[lines.length-1]+'\n');
-    }
 
     if(result.error.message) {
+      // result.error.message is the whole stack trace
+      var lines = result.error.message.split('\n');
+      var last = lines[lines.length-1].split(': ');
+      // at http://localhost:7357/assets/test-support.js:5463: No model was found for 'user'
+      // line number and file aren't useful because it's the concatenated file
+      if (last.length > 1) {
+        this.out.write(last[1]+'\n');
+      } else {
+        this.out.write(lines[lines.length-1]+'\n');
+      }
+
       this.out.write(result.error.message.replace(/\n/g, '\n    ') + '\n');
     }
   },
