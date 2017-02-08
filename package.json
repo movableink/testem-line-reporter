@@ -1,6 +1,6 @@
 {
   "name": "testem-failure-dot-reporter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reporter for testem that outputs dots and failed tests",
   "main": "index.js",
   "repository": {
