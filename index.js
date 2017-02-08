@@ -29,11 +29,11 @@ FailureReporter.prototype = {
     }
 
     if (result.passed) {
-      this.out.write(colors.green.bold('.'));
+      this.out.write(colors.green('.'));
       return;
     }
 
-    this.out.write(colors.red.bold('\nF ' + result.name.trim())+': ');
+    this.out.write(colors.red('\nF ' + result.name.trim())+': ');
     // result.error.message is the whole stack trace
     var lines = result.error.message.split('\n');
     var last = lines[lines.length-1].split(': ');
@@ -55,9 +55,9 @@ FailureReporter.prototype = {
 
     var summary = '\n'+this.fail+'/'+this.total+' failed\n';
     if (this.fail === 0) {
-      this.out.write(colors.green.bold(summary));
+      this.out.write(colors.green(summary));
     } else {
-      this.out.write(colors.red.bold(summary));
+      this.out.write(colors.red(summary));
     }
   }
 };
