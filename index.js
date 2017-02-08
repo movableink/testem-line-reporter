@@ -45,7 +45,9 @@ FailureReporter.prototype = {
       this.out.write(lines[lines.length-1]+'\n');
     }
 
-    this.out.write(result.error.message.replace(/\n/g, '\n    ') + '\n');
+    if(result.error.message) {
+      this.out.write(result.error.message.replace(/\n/g, '\n    ') + '\n');
+    }
   },
 
   finish: function() {
