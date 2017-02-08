@@ -33,7 +33,7 @@ FailureReporter.prototype = {
       return;
     }
 
-    this.out.write(colors.red('\nF ' + result.name.trim())+': ');
+    this.out.write('\n' + colors.red('F ' + result.name.trim())+': ');
     // result.error.message is the whole stack trace
     var lines = result.error.message.split('\n');
     var last = lines[lines.length-1].split(': ');
@@ -53,7 +53,9 @@ FailureReporter.prototype = {
       return;
     }
 
-    var summary = '\n'+this.fail+'/'+this.total+' failed\n';
+    var summary = this.fail+'/'+this.total+' failed\n';
+
+    this.out.write('\n');
     if (this.fail === 0) {
       this.out.write(colors.green(summary));
     } else {
