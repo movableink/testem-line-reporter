@@ -35,7 +35,7 @@ FailureReporter.prototype = {
 
     this.out.write('\n' + colors.red('F ' + result.name.trim())+': ');
 
-    if(result.error.message) {
+    if(result.error && result.error.message) {
       // result.error.message is the whole stack trace
       var lines = result.error.message.split('\n');
       var last = lines[lines.length-1].split(': ');
