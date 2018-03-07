@@ -1,11 +1,11 @@
 {
-  "name": "testem-failure-dot-reporter",
-  "version": "1.0.3",
-  "description": "Reporter for testem that outputs dots and failed tests",
+  "name": "testem-line-reporter",
+  "version": "1.0.0",
+  "description": "Reporter for testem that outputs one test per line",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/movableink/testem-failure-dot-reporter.git"
+    "url": "git://github.com/movableink/testem-line-reporter.git"
   },
   "scripts": {
     "test": "testem ci"
